@@ -43,6 +43,7 @@ module.exports = (robot) ->
     console.log "Sender: #{JSON.stringify(msg.message.user)}"
     console.log "Recipients: #{recipients}"
     room = msg.message.user.room
+    console.log "Room: #{room}"
     tellmessage = [msg.message.user.name, new Date(), message]
     if not localstorage[room]?
       localstorage[room] = {}
@@ -60,12 +61,14 @@ module.exports = (robot) ->
   # When a user enters, check if someone left them a message
   robot.enter (msg) ->
     localstorage = JSON.parse(robot.brain.get 'hubot-tell') or {}
+    console.log JSON.stringify localstorage
     console.log JSON.stringify msg.message
     if config.relativeTime
       timeago = require('timeago')
     username = msg.message.user.mention_name
     console.log "User joined: #{username}"
     room = msg.message.user.room
+    console.log "User joined room: #{room}"
     if localstorage[room]?
       console.log JSON.stringify localstorage[room]
       for recipient, message of localstorage[room]

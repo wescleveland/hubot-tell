@@ -40,12 +40,14 @@ module.exports = (robot) ->
     verb = msg.match[1]
     recipients = msg.match[2].split(',').filter((x) -> x?.length)
     message = msg.match[3]
-
+    console.log "Sender: #{msg.message.user}"
+    console.log "Recipients: #{recipients}"
     room = msg.message.user.room
     tellmessage = [msg.message.user.name, new Date(), message]
     if not localstorage[room]?
       localstorage[room] = {}
     for recipient in recipients
+
       if localstorage[room][recipient]?
         localstorage[room][recipient].push(tellmessage)
       else

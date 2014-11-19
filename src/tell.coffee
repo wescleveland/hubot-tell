@@ -69,6 +69,8 @@ module.exports = (robot) ->
     if localstorage[room]?
       for recipient, message of localstorage[room]
         # Check if the recipient matches username
+        console.log "Recipient: #{recipient}"
+        console.log username.match new RegExp("^#{recipient}", "i")
         if username.match new RegExp("^#{recipient}", "i")
           tellmessage = "@#{username}: "
           for message in localstorage[room][recipient]

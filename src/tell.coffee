@@ -63,7 +63,7 @@ module.exports = (robot) ->
     console.log JSON.stringify msg.message
     if config.relativeTime
       timeago = require('timeago')
-    username = msg.message.user.name
+    username = msg.message.user.mention_name
     console.log "User joined: #{username}"
     room = msg.message.user.room
     if localstorage[room]?

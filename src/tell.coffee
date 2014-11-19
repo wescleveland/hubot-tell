@@ -42,7 +42,7 @@ module.exports = (robot) ->
     message = msg.match[3]
     console.log "Sender: #{JSON.stringify(msg.message.user)}"
     console.log "Recipients: #{recipients}"
-    room = msg.message.room
+    room = msg.message.user.reply_to
     console.log "Room: #{room}"
     tellmessage = [msg.message.user.name, new Date(), message]
     if not localstorage[room]?

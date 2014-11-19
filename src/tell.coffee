@@ -67,6 +67,7 @@ module.exports = (robot) ->
     console.log "User joined: #{username}"
     room = msg.message.user.room
     if localstorage[room]?
+      console.log JSON.stringify localstorage[room]
       for recipient, message of localstorage[room]
         # Check if the recipient matches username
         console.log "Recipient: #{recipient}"

@@ -62,12 +62,13 @@ module.exports = (robot) ->
     if config.relativeTime
       timeago = require('timeago')
     username = msg.message.user.name
+    console.log "User joined: #{username}"
     room = msg.message.user.room
     if localstorage[room]?
       for recipient, message of localstorage[room]
         # Check if the recipient matches username
         if username.match new RegExp("^#{recipient}", "i")
-          tellmessage = "#{username}: "
+          tellmessage = "@#{username}: "
           for message in localstorage[room][recipient]
             # Also check that we have successfully loaded timeago
             if config.relativeTime && timeago?
